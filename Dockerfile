@@ -15,3 +15,6 @@ COPY . /app
 
 # Execute 'npm start' in cmd / Entry Point
 CMD ["npm", "start"]
+
+# Expose port 3000; Also defined in app.js
+EXPOSE 3000
