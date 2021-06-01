@@ -15,7 +15,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 service:
-  type: NodePort
+  type: LoadBalancer
   exposePort: 30111
   targetPort: 3000
   port: 3000
