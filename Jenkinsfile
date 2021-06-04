@@ -2,6 +2,7 @@ pipeline {
     agent any
     def app
 
+    stages {
         stage('Clone Repository') {
         // Clone repo into workspace
             steps {
