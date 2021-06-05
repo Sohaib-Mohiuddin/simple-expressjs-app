@@ -9,7 +9,7 @@ pipeline {
             steps {
                 // Clone repo into workspace
                 echo 'Cloning repository'
-                checkout scm
+                // checkout scm
             }
             
         }
@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image'
-                app = docker.build("sohaibm/simple-expressjs-app:${params.VERSION}", '.')
+                // app = docker.build("sohaibm/simple-expressjs-app:${params.VERSION}", '.')
             }
             
         }
@@ -25,9 +25,9 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 echo 'Pushing Docker image to DockerHub'
-                docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
-                    app.push()
-                }
+                // docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
+                //     app.push()
+                // }
             }
             
         }
