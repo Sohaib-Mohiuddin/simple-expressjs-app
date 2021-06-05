@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    def app
     parameters {
         string(name: 'VERSION', defaultValue: '', description: 'Version of image being pushed to DockerHub/sohaibm. Add incremental version number.')
     }
@@ -13,21 +12,14 @@ pipeline {
             }
             
         }
-
-        stage('Build Docker Image') {
+        stage('Build & Push Docker Image') {
             steps {
-                echo 'Building Docker image'
-                // app = docker.build("sohaibm/simple-expressjs-app:${params.VERSION}", '.')
-            }
-            
-        }
-
-        stage('Push Docker Image') {
-            steps {
-                echo 'Pushing Docker image to DockerHub'
+                echo 'Building Docker Image'
                 // docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
                 //     app.push()
+                //     docker.build("sohaibm/simple-expressjs-app:${params.VERSION}", '.').push()
                 // }
+                echo 'Pushed Docker image to DockerHub'
             }
             
         }
