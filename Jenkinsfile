@@ -1,7 +1,7 @@
+def docker_build_push
 pipeline {
     environment {
         IMAGE_NAME = 'sohaibm/simple-expressjs-app'
-        DOCKER_BUILD_PUSH = ''
     }
     agent any
     parameters {
@@ -19,7 +19,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Image'
-                DOCKER_BUILD_PUSH = docker.build("${IMAGE_NAME}:${params.VERSION}", '.')
+                docker_build_push = docker.build("${IMAGE_NAME}:${params.VERSION}", '.')
                 echo 'Building Image Complete'
             }
             
@@ -29,7 +29,7 @@ pipeline {
                 echo 'Pushing Docker Image'
                 docker.withRegistry('', 'DockerHub') {
                     // app.push()
-                    DOCKER_BUILD_PUSH.push()
+                    docker_build_push.push()
                 }
                 echo 'Pushing Docker Image Complete -> DockerHub/sohaibm/simple-expressjs-app'
             }
