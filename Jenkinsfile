@@ -3,11 +3,12 @@ def docker_build_push
 pipeline {
     environment {
         IMAGE_NAME = 'sohaibm/simple-expressjs-app'
+        VERSION = '1.1'
     }
     agent any
-    parameters {
-        string(name: 'VERSION', defaultValue: '', description: 'Version of image being pushed to DockerHub/sohaibm. Add incremental version number.')
-    }
+    // parameters {
+    //     string(name: 'VERSION', defaultValue: '', description: 'Version of image being pushed to DockerHub/sohaibm. Add incremental version number.')
+    // }
     stages {
         stage('Clone Repository') {
             steps {
@@ -20,7 +21,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Image'
-                docker_build_push = docker.build("${IMAGE_NAME}:${params.VERSION}", '.')
+                docker_build_push = docker.build("${IMAGE_NAME}:${VERSION}", '.')
                 echo 'Building Image Complete'
             }
             
@@ -32,7 +33,7 @@ pipeline {
                     // app.push()
                     docker_build_push.push()
                 }
-                echo 'Pushing Docker Image Complete -> DockerHub/sohaibm/simple-expressjs-app'
+                echo "Pushing Docker Image Complete -> DockerHub/sohaibm/simple-expressjs-app:${VERSION}'
             }
             
         }
