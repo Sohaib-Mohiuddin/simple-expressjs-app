@@ -21,7 +21,9 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Image'
-                docker_build_push = docker.build("${IMAGE_NAME}:${VERSION}", '.')
+                script {
+                    docker_build_push = docker.build("${IMAGE_NAME}:${VERSION}", '.')
+                }
                 echo 'Building Image Complete'
             }
             
@@ -29,10 +31,13 @@ pipeline {
         stage('Push Docker Image -> DockerHub') {
             steps {
                 echo 'Pushing Docker Image'
-                docker.withRegistry('', 'DockerHub') {
-                    // app.push()
-                    docker_build_push.push()
+                script {
+                    docker.withRegistry('', 'DockerHub') {
+                        // app.push()
+                        docker_build_push.push()
+                    }
                 }
+                
                 echo "Pushing Docker Image Complete -> DockerHub/sohaibm/simple-expressjs-app:${VERSION}"
                 
             }
