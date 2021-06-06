@@ -33,7 +33,8 @@ pipeline {
                     // app.push()
                     docker_build_push.push()
                 }
-                echo "Pushing Docker Image Complete -> DockerHub/sohaibm/simple-expressjs-app:${VERSION}'
+                echo "Pushing Docker Image Complete -> DockerHub/sohaibm/simple-expressjs-app:${VERSION}"
+                
             }
             
         }
