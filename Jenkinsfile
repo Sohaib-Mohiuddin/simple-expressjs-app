@@ -1,4 +1,5 @@
 def docker_build_push
+
 pipeline {
     environment {
         IMAGE_NAME = 'sohaibm/simple-expressjs-app'
