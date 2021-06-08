@@ -1,5 +1,8 @@
-# Pull base image from Docker Hub - node 16
-FROM node:16
+# Pull base image from Docker Hub - Alpine Linux
+FROM alpine:latest
+
+# Install necessary packages for ReactJS and Flask
+RUN apk --update add --no-cache bash nano vim python3-dev py3-pip nodejs npm
 
 # Create app directory for image
 WORKDIR /app
